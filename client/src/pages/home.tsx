@@ -5,7 +5,6 @@ import UpcomingEvents from "@/components/home/upcoming-events";
 import TrocDamPreview from "@/components/home/trocdam-preview";
 import Testimonials from "@/components/home/testimonials";
 import JoinCta from "@/components/home/join-cta";
-import AboutPreview from "@/components/home/about-preview";
 
 const Home = () => {
   return (
@@ -17,7 +16,6 @@ const Home = () => {
       <TrocDamPreview />
       <Testimonials />
       <JoinCta />
-      <AboutPreview />
     </>
   );
 };

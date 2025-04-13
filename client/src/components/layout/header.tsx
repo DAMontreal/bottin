@@ -40,7 +40,8 @@ const Header = () => {
       messages: "Messages",
       admin: "Administration",
       logout: "Déconnexion",
-      search: "Rechercher"
+      search: "Rechercher",
+      backToSite: "Retour au site"
     },
     EN: {
       home: "Home",
@@ -53,7 +54,8 @@ const Header = () => {
       messages: "Messages",
       admin: "Administration",
       logout: "Logout",
-      search: "Search"
+      search: "Search",
+      backToSite: "Back to site"
     },
     ES: {
       home: "Inicio",
@@ -66,7 +68,8 @@ const Header = () => {
       messages: "Mensajes",
       admin: "Administración",
       logout: "Cerrar sesión",
-      search: "Buscar"
+      search: "Buscar",
+      backToSite: "Volver al sitio"
     }
   };
 
@@ -77,6 +80,7 @@ const Header = () => {
     { path: "/artists", label: labels.artists },
     { path: "/events", label: labels.events },
     { path: "/trocdam", label: labels.trocdam },
+    { path: "https://www.diversiteartistique.org", label: labels.backToSite, external: true },
   ];
 
   return (
@@ -92,15 +96,27 @@ const Header = () => {
 
           <nav className="hidden md:flex items-center space-x-6">
             {menuItems.map((item) => (
-              <Link
-                key={item.path}
-                href={item.path}
-                className={`font-medium hover:text-[#FF5500] transition-colors ${
-                  location === item.path ? "text-[#FF5500]" : ""
-                }`}
-              >
-                {item.label}
-              </Link>
+              item.external ? (
+                <a 
+                  key={item.path}
+                  href={item.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium hover:text-[#FF5500] transition-colors"
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <Link
+                  key={item.path}
+                  href={item.path}
+                  className={`font-medium hover:text-[#FF5500] transition-colors ${
+                    location === item.path ? "text-[#FF5500]" : ""
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              )
             ))}
           </nav>
 
@@ -172,15 +188,27 @@ const Header = () => {
           <div className="container mx-auto px-4 py-3">
             <nav className="flex flex-col space-y-3">
               {menuItems.map((item) => (
-                <Link
-                  key={item.path}
-                  href={item.path}
-                  className={`font-medium py-2 hover:text-[#FF5500] transition-colors ${
-                    location === item.path ? "text-[#FF5500]" : ""
-                  }`}
-                >
-                  {item.label}
-                </Link>
+                item.external ? (
+                  <a
+                    key={item.path}
+                    href={item.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium py-2 hover:text-[#FF5500] transition-colors"
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.path}
+                    href={item.path}
+                    className={`font-medium py-2 hover:text-[#FF5500] transition-colors ${
+                      location === item.path ? "text-[#FF5500]" : ""
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                )
               ))}
               
               {!isAuthenticated ? (
