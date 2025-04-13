@@ -22,7 +22,7 @@ const Artists = () => {
   );
   
   const [keyword, setKeyword] = useState(searchParams.get("q") || "");
-  const [discipline, setDiscipline] = useState(searchParams.get("discipline") || "");
+  const [discipline, setDiscipline] = useState(searchParams.get("discipline") || "all");
 
   const { data: artists, isLoading } = useQuery<User[]>({
     queryKey: ["/api/users?approved=true"],
@@ -39,7 +39,7 @@ const Artists = () => {
         );
     
     // Filter by discipline
-    const disciplineMatch = !discipline ? true : artist.discipline === discipline;
+    const disciplineMatch = !discipline || discipline === "all" ? true : artist.discipline === discipline;
     
     return keywordMatch && disciplineMatch;
   });
@@ -50,7 +50,7 @@ const Artists = () => {
     // Update URL parameters
     const params = new URLSearchParams();
     if (keyword) params.append("q", keyword);
-    if (discipline) params.append("discipline", discipline);
+    if (discipline && discipline !== "all") params.append("discipline", discipline);
     
     // Update browser URL without navigation
     window.history.pushState(
@@ -66,7 +66,7 @@ const Artists = () => {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     setKeyword(params.get("q") || "");
-    setDiscipline(params.get("discipline") || "");
+    setDiscipline(params.get("discipline") || "all");
   }, [location]);
 
   return (
@@ -89,7 +89,7 @@ const Artists = () => {
               <SelectValue placeholder="Discipline" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Toutes les disciplines</SelectItem>
+              <SelectItem value="all">Toutes les disciplines</SelectItem>
               {disciplines.map((d) => (
                 <SelectItem key={d.value} value={d.value}>
                   {d.label}
@@ -134,7 +134,7 @@ const Artists = () => {
             variant="outline" 
             onClick={() => {
               setKeyword("");
-              setDiscipline("");
+              setDiscipline("all");
               window.history.pushState({}, "", window.location.pathname);
               setSearchParams(new URLSearchParams());
             }}
