@@ -304,7 +304,7 @@ const AnalyticsDashboard = () => {
                         </div>
                       </div>
                       <div className="text-sm text-gray-500">
-                        {new Date(user.createdAt).toLocaleDateString('fr-FR')}
+                        {new Date(user.createdAt || new Date()).toLocaleDateString('fr-FR')}
                       </div>
                     </div>
                   ))}
@@ -348,7 +348,7 @@ const AnalyticsDashboard = () => {
                         <p className="text-sm text-gray-500">{getTrocCategoryLabel(ad.category)}</p>
                       </div>
                       <div className="text-sm text-gray-500">
-                        {new Date(ad.createdAt).toLocaleDateString('fr-FR')}
+                        {new Date(ad.createdAt || new Date()).toLocaleDateString('fr-FR')}
                       </div>
                     </div>
                   ))}

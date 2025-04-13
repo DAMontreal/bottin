@@ -679,16 +679,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // Recent activities (last 10 users, events, and ads)
       const recentUsers = [...approvedUsers]
-        .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+        .sort((a, b) => new Date(b.createdAt || new Date()).getTime() - new Date(a.createdAt || new Date()).getTime())
         .slice(0, 10)
         .map(({ password, ...user }) => user);
         
       const recentEvents = [...events]
-        .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+        .sort((a, b) => new Date(b.createdAt || new Date()).getTime() - new Date(a.createdAt || new Date()).getTime())
         .slice(0, 10);
         
       const recentAds = [...trocAds]
-        .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+        .sort((a, b) => new Date(b.createdAt || new Date()).getTime() - new Date(a.createdAt || new Date()).getTime())
         .slice(0, 10);
       
       // Return analytics data

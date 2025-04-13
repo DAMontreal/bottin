@@ -145,29 +145,7 @@ const Admin = () => {
               <p className="text-gray-600 mb-6">
                 Visualisez les statistiques d'utilisation de la plateforme.
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="border border-gray-200 rounded-lg p-6 text-center">
-                  <div className="text-4xl font-bold text-[#FF5500] mb-2">0</div>
-                  <div className="text-gray-500">Artistes approuvés</div>
-                </div>
-                
-                <div className="border border-gray-200 rounded-lg p-6 text-center">
-                  <div className="text-4xl font-bold text-[#FF5500] mb-2">0</div>
-                  <div className="text-gray-500">Événements publiés</div>
-                </div>
-                
-                <div className="border border-gray-200 rounded-lg p-6 text-center">
-                  <div className="text-4xl font-bold text-[#FF5500] mb-2">0</div>
-                  <div className="text-gray-500">Annonces TROC'DAM</div>
-                </div>
-              </div>
-              
-              <div className="mt-8">
-                <h3 className="font-bold text-xl mb-4">Activité récente</h3>
-                <div className="border border-gray-200 rounded-lg p-6 text-center">
-                  <p className="text-gray-400">Aucune activité à afficher</p>
-                </div>
-              </div>
+              <AnalyticsDashboard />
             </CardContent>
           </Card>
         </TabsContent>
