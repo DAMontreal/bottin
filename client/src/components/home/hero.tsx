@@ -15,7 +15,7 @@ const Hero = () => {
       <div className="container mx-auto px-4 py-20 relative z-10">
         <div className="max-w-2xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            Découvrez des artistes diversifiés du Québec
+            Découvrez des artistes de la diversité du Québec
           </h1>
           <p className="text-xl mb-8">
             Une plateforme pour promouvoir et connecter des talents artistiques de tous horizons
