@@ -1,0 +1,193 @@
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "wouter";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Menu, ChevronDown, X } from "lucide-react";
+import { useAuth } from "@/hooks/use-auth";
+import { useIsMobile } from "@/hooks/use-mobile";
+
+const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [currentLanguage, setCurrentLanguage] = useState("FR");
+  const [location] = useLocation();
+  const { isAuthenticated, user, isAdmin, logout } = useAuth();
+  const isMobile = useIsMobile();
+
+  // Close mobile menu when navigating or screen size changes
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location, isMobile]);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const toggleLanguage = () => {
+    setCurrentLanguage(currentLanguage === "FR" ? "EN" : "FR");
+  };
+
+  const menuItems = [
+    { path: "/", label: "Accueil" },
+    { path: "/artists", label: "Artistes" },
+    { path: "/events", label: "Événements" },
+    { path: "/trocdam", label: "TROC'DAM" },
+    { path: "/about", label: "À propos" },
+  ];
+
+  return (
+    <header className="fixed top-0 left-0 right-0 bg-white shadow-md z-50">
+      <div className="container mx-auto px-4">
+        <div className="flex justify-between items-center py-3">
+          <div className="flex items-center">
+            <Link href="/" className="flex items-center">
+              <div className="bg-[#FF5500] text-white font-bold text-2xl p-2 rounded">DAM</div>
+              <span className="ml-2 text-black font-bold text-lg">Bottin des artistes</span>
+            </Link>
+          </div>
+
+          <nav className="hidden md:flex items-center space-x-6">
+            {menuItems.map((item) => (
+              <Link
+                key={item.path}
+                href={item.path}
+                className={`font-medium hover:text-[#FF5500] transition-colors ${
+                  location === item.path ? "text-[#FF5500]" : ""
+                }`}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="flex items-center space-x-4">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="h-8 w-12 p-0">
+                  {currentLanguage} <ChevronDown className="ml-1 h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={() => setCurrentLanguage("FR")}>FR</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setCurrentLanguage("EN")}>EN</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {!isAuthenticated ? (
+              <div className="hidden md:flex items-center space-x-2">
+                <Link href="/login">
+                  <Button variant="ghost" className="font-medium">
+                    Connexion
+                  </Button>
+                </Link>
+                <Link href="/register">
+                  <Button className="bg-[#FF5500] hover:bg-opacity-90 text-white">
+                    Inscription
+                  </Button>
+                </Link>
+              </div>
+            ) : (
+              <div className="hidden md:flex items-center space-x-2">
+                {isAdmin && (
+                  <Link href="/admin">
+                    <Button variant="outline" size="sm">
+                      Admin
+                    </Button>
+                  </Link>
+                )}
+                <Link href="/dashboard">
+                  <Button variant="ghost" className="font-medium">
+                    Mon profil
+                  </Button>
+                </Link>
+                <Button
+                  variant="outline"
+                  onClick={() => logout()}
+                  className="font-medium"
+                >
+                  Déconnexion
+                </Button>
+              </div>
+            )}
+
+            <button className="md:hidden text-black" onClick={toggleMenu}>
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {isMenuOpen && (
+        <div className="md:hidden bg-white border-t">
+          <div className="container mx-auto px-4 py-3">
+            <nav className="flex flex-col space-y-3">
+              {menuItems.map((item) => (
+                <Link
+                  key={item.path}
+                  href={item.path}
+                  className={`font-medium py-2 hover:text-[#FF5500] transition-colors ${
+                    location === item.path ? "text-[#FF5500]" : ""
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              ))}
+              
+              {!isAuthenticated ? (
+                <>
+                  <Link
+                    href="/login"
+                    className="font-medium py-2 hover:text-[#FF5500] transition-colors"
+                  >
+                    Connexion
+                  </Link>
+                  <Link href="/register">
+                    <Button className="w-full bg-[#FF5500] hover:bg-opacity-90 text-white">
+                      Inscription
+                    </Button>
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link
+                    href="/dashboard"
+                    className="font-medium py-2 hover:text-[#FF5500] transition-colors"
+                  >
+                    Mon profil
+                  </Link>
+                  <Link
+                    href="/messages"
+                    className="font-medium py-2 hover:text-[#FF5500] transition-colors"
+                  >
+                    Messages
+                  </Link>
+                  {isAdmin && (
+                    <Link
+                      href="/admin"
+                      className="font-medium py-2 hover:text-[#FF5500] transition-colors"
+                    >
+                      Administration
+                    </Link>
+                  )}
+                  <Button
+                    variant="outline"
+                    onClick={() => logout()}
+                    className="w-full"
+                  >
+                    Déconnexion
+                  </Button>
+                </>
+              )}
+            </nav>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+};
+
+export default Header;
