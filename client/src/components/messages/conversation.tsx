@@ -209,7 +209,7 @@ const Conversation = ({ userId, currentUser, loading }: ConversationProps) => {
                       isCurrentUser ? "text-white/70 text-right" : "text-gray-500"
                     }`}
                   >
-                    {formatTimeAgo(message.createdAt)}
+                    {formatTimeAgo(message.createdAt || new Date())}
                   </span>
                 </div>
               </div>

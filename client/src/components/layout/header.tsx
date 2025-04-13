@@ -27,16 +27,56 @@ const Header = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const toggleLanguage = () => {
-    setCurrentLanguage(currentLanguage === "FR" ? "EN" : "FR");
+  // Labels for different languages
+  const languageLabels = {
+    FR: {
+      home: "Accueil",
+      artists: "Artistes",
+      events: "Événements",
+      trocdam: "TROC'DAM",
+      login: "Connexion",
+      register: "Inscription",
+      profile: "Mon profil",
+      messages: "Messages",
+      admin: "Administration",
+      logout: "Déconnexion",
+      search: "Rechercher"
+    },
+    EN: {
+      home: "Home",
+      artists: "Artists",
+      events: "Events",
+      trocdam: "TROC'DAM",
+      login: "Login",
+      register: "Register",
+      profile: "My Profile",
+      messages: "Messages",
+      admin: "Administration",
+      logout: "Logout",
+      search: "Search"
+    },
+    ES: {
+      home: "Inicio",
+      artists: "Artistas",
+      events: "Eventos",
+      trocdam: "TROC'DAM",
+      login: "Iniciar sesión",
+      register: "Registrarse",
+      profile: "Mi Perfil",
+      messages: "Mensajes",
+      admin: "Administración",
+      logout: "Cerrar sesión",
+      search: "Buscar"
+    }
   };
 
+  const labels = languageLabels[currentLanguage as keyof typeof languageLabels];
+
   const menuItems = [
-    { path: "/", label: "Accueil" },
-    { path: "/artists", label: "Artistes" },
-    { path: "/events", label: "Événements" },
-    { path: "/trocdam", label: "TROC'DAM" },
-    { path: "/about", label: "À propos" },
+    { path: "/", label: labels.home },
+    { path: "/artists", label: labels.artists },
+    { path: "/events", label: labels.events },
+    { path: "/trocdam", label: labels.trocdam },
   ];
 
   return (
@@ -72,8 +112,9 @@ const Header = () => {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => setCurrentLanguage("FR")}>FR</DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setCurrentLanguage("EN")}>EN</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setCurrentLanguage("FR")}>Français</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setCurrentLanguage("EN")}>English</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setCurrentLanguage("ES")}>Español</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 
@@ -81,12 +122,12 @@ const Header = () => {
               <div className="hidden md:flex items-center space-x-2">
                 <Link href="/login">
                   <Button variant="ghost" className="font-medium">
-                    Connexion
+                    {labels.login}
                   </Button>
                 </Link>
                 <Link href="/register">
                   <Button className="bg-[#FF5500] hover:bg-opacity-90 text-white">
-                    Inscription
+                    {labels.register}
                   </Button>
                 </Link>
               </div>
@@ -95,13 +136,18 @@ const Header = () => {
                 {isAdmin && (
                   <Link href="/admin">
                     <Button variant="outline" size="sm">
-                      Admin
+                      {labels.admin}
                     </Button>
                   </Link>
                 )}
                 <Link href="/dashboard">
                   <Button variant="ghost" className="font-medium">
-                    Mon profil
+                    {labels.profile}
+                  </Button>
+                </Link>
+                <Link href="/messages">
+                  <Button variant="ghost" className="font-medium">
+                    {labels.messages}
                   </Button>
                 </Link>
                 <Button
@@ -109,7 +155,7 @@ const Header = () => {
                   onClick={() => logout()}
                   className="font-medium"
                 >
-                  Déconnexion
+                  {labels.logout}
                 </Button>
               </div>
             )}
@@ -143,11 +189,11 @@ const Header = () => {
                     href="/login"
                     className="font-medium py-2 hover:text-[#FF5500] transition-colors"
                   >
-                    Connexion
+                    {labels.login}
                   </Link>
                   <Link href="/register">
                     <Button className="w-full bg-[#FF5500] hover:bg-opacity-90 text-white">
-                      Inscription
+                      {labels.register}
                     </Button>
                   </Link>
                 </>
@@ -157,20 +203,20 @@ const Header = () => {
                     href="/dashboard"
                     className="font-medium py-2 hover:text-[#FF5500] transition-colors"
                   >
-                    Mon profil
+                    {labels.profile}
                   </Link>
                   <Link
                     href="/messages"
                     className="font-medium py-2 hover:text-[#FF5500] transition-colors"
                   >
-                    Messages
+                    {labels.messages}
                   </Link>
                   {isAdmin && (
                     <Link
                       href="/admin"
                       className="font-medium py-2 hover:text-[#FF5500] transition-colors"
                     >
-                      Administration
+                      {labels.admin}
                     </Link>
                   )}
                   <Button
@@ -178,7 +224,7 @@ const Header = () => {
                     onClick={() => logout()}
                     className="w-full"
                   >
-                    Déconnexion
+                    {labels.logout}
                   </Button>
                 </>
               )}

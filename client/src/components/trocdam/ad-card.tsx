@@ -58,7 +58,7 @@ const TrocAdCard = ({ ad }: TrocAdCardProps) => {
           )}
         </div>
         <div className="flex items-center gap-3">
-          <span className="text-xs text-gray-500">{formatTimeAgo(ad.createdAt)}</span>
+          <span className="text-xs text-gray-500">{formatTimeAgo(ad.createdAt || new Date())}</span>
           {isAuthenticated && user && (
             <Button 
               size="sm" 
