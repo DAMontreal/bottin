@@ -644,6 +644,78 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ message: "Internal server error" });
     }
   });
+  
+  // Analytics API
+  app.get("/api/admin/analytics", requireAdmin, async (req, res) => {
+    try {
+      // Get counts of various entities
+      const users = await storage.getUsers();
+      const approvedUsers = users.filter(user => user.isApproved);
+      const pendingUsers = users.filter(user => !user.isApproved);
+      const events = await storage.getEvents();
+      const trocAds = await storage.getTrocAds();
+      
+      // Count users by discipline
+      const usersByDiscipline: Record<string, number> = {};
+      approvedUsers.forEach(user => {
+        if (user.discipline) {
+          usersByDiscipline[user.discipline] = (usersByDiscipline[user.discipline] || 0) + 1;
+        }
+      });
+      
+      // Count users by location
+      const usersByLocation: Record<string, number> = {};
+      approvedUsers.forEach(user => {
+        if (user.location) {
+          usersByLocation[user.location] = (usersByLocation[user.location] || 0) + 1;
+        }
+      });
+      
+      // Count ads by category
+      const adsByCategory: Record<string, number> = {};
+      trocAds.forEach(ad => {
+        adsByCategory[ad.category] = (adsByCategory[ad.category] || 0) + 1;
+      });
+      
+      // Recent activities (last 10 users, events, and ads)
+      const recentUsers = [...approvedUsers]
+        .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+        .slice(0, 10)
+        .map(({ password, ...user }) => user);
+        
+      const recentEvents = [...events]
+        .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+        .slice(0, 10);
+        
+      const recentAds = [...trocAds]
+        .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+        .slice(0, 10);
+      
+      // Return analytics data
+      res.json({
+        counts: {
+          totalUsers: users.length,
+          approvedUsers: approvedUsers.length,
+          pendingUsers: pendingUsers.length,
+          events: events.length,
+          trocAds: trocAds.length
+        },
+        distribution: {
+          usersByDiscipline,
+          usersByLocation,
+          adsByCategory
+        },
+        recent: {
+          users: recentUsers,
+          events: recentEvents,
+          ads: recentAds
+        }
+      });
+    } catch (error) {
+      console.error('Analytics error:', error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
 
   app.patch("/api/admin/users/:id/approve", requireAdmin, async (req, res) => {
     try {

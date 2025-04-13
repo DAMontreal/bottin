@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useAuth } from "@/hooks/use-auth";
 import PendingUsers from "@/components/admin/pending-users";
 import UserManagement from "@/components/admin/user-management";
+import AnalyticsDashboard from "@/components/admin/analytics-dashboard";
 
 const Admin = () => {
   const [location, navigate] = useLocation();
