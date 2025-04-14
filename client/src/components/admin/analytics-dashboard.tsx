@@ -192,7 +192,7 @@ const AnalyticsDashboard = () => {
                       <XAxis dataKey="name" angle={-45} textAnchor="end" height={80} />
                       <YAxis />
                       <Tooltip />
-                      <Bar dataKey="value" fill="#FF5500" />
+                      <Bar dataKey="value" fill="#F89720" />
                     </BarChart>
                   </ResponsiveContainer>
                 </div>
@@ -241,7 +241,7 @@ const AnalyticsDashboard = () => {
                       <XAxis dataKey="name" angle={-45} textAnchor="end" height={80} />
                       <YAxis />
                       <Tooltip />
-                      <Bar dataKey="value" fill="#FF5500" />
+                      <Bar dataKey="value" fill="#F89720" />
                     </BarChart>
                   </ResponsiveContainer>
                 </div>

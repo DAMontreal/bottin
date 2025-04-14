@@ -86,13 +86,13 @@ const Login = () => {
                 )}
               />
               
-              <Button type="submit" className="w-full bg-[#FF5500]" disabled={isSubmitting}>
+              <Button type="submit" className="w-full bg-dam-orange hover:bg-[#e88a1e]" disabled={isSubmitting}>
                 {isSubmitting ? "Connexion en cours..." : "Se connecter"}
               </Button>
               
               <div className="text-center text-sm">
                 Vous n'avez pas de compte?{" "}
-                <Link href="/register" className="text-[#FF5500] hover:underline">
+                <Link href="/register" className="text-dam-orange hover:underline">
                   S'inscrire
                 </Link>
               </div>

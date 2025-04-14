@@ -22,15 +22,11 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-            <Link href="/artists">
-              <a className="bg-white text-black hover:bg-gray-200 font-bold py-3 px-8 rounded-full transition-colors inline-block text-center">
+            <Link href="/artists" className="bg-white text-black hover:bg-gray-200 font-bold py-3 px-8 rounded-full transition-colors inline-block text-center">
                 Explorer les artistes
-              </a>
             </Link>
-            <Link href="/register">
-              <a className="bg-transparent border-2 border-white hover:bg-white hover:text-black font-bold py-3 px-8 rounded-full transition-colors inline-block text-center">
+            <Link href="/register" className="bg-transparent border-2 border-white hover:bg-white hover:text-black font-bold py-3 px-8 rounded-full transition-colors inline-block text-center">
                 Créer mon profil
-              </a>
             </Link>
           </div>
         </div>
