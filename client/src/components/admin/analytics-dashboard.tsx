@@ -29,7 +29,7 @@ interface AnalyticsData {
   };
 }
 
-const COLORS = ['#FF5500', '#FF7A45', '#FF9C6E', '#FFC09F', '#FFD8BF', '#FFE9D9', '#FFF7E6', '#F96A34', '#F27F54', '#EBB48E'];
+const COLORS = ['#F89720', '#FAA83C', '#FBBA5D', '#FCCC7D', '#FDDE9E', '#FEEFBE', '#FFF7E6', '#F9A642', '#F7B564', '#F5C486'];
 
 const AnalyticsDashboard = () => {
   const { data, isLoading, isError } = useQuery<AnalyticsData>({
@@ -39,7 +39,7 @@ const AnalyticsDashboard = () => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <Loader2 className="h-8 w-8 animate-spin text-[#FF5500]" />
+        <Loader2 className="h-8 w-8 animate-spin text-dam-orange" />
       </div>
     );
   }
@@ -77,7 +77,7 @@ const AnalyticsDashboard = () => {
             <CardTitle className="text-sm font-medium">Total des Artistes</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-[#FF5500]">{data.counts.totalUsers}</div>
+            <div className="text-3xl font-bold text-dam-orange">{data.counts.totalUsers}</div>
             <p className="text-xs text-gray-500 mt-1">
               {data.counts.approvedUsers} approuvés, {data.counts.pendingUsers} en attente
             </p>
@@ -93,7 +93,7 @@ const AnalyticsDashboard = () => {
             <CardTitle className="text-sm font-medium">Artistes en attente</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-[#FF5500]">{data.counts.pendingUsers}</div>
+            <div className="text-3xl font-bold text-dam-orange">{data.counts.pendingUsers}</div>
             <p className="text-xs text-gray-500 mt-1">
               En attente d'approbation
             </p>
@@ -109,7 +109,7 @@ const AnalyticsDashboard = () => {
             <CardTitle className="text-sm font-medium">Événements</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-[#FF5500]">{data.counts.events}</div>
+            <div className="text-3xl font-bold text-dam-orange">{data.counts.events}</div>
             <p className="text-xs text-gray-500 mt-1">
               Événements publiés
             </p>
@@ -121,7 +121,7 @@ const AnalyticsDashboard = () => {
             <CardTitle className="text-sm font-medium">Annonces TROC'DAM</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-[#FF5500]">{data.counts.trocAds}</div>
+            <div className="text-3xl font-bold text-dam-orange">{data.counts.trocAds}</div>
             <p className="text-xs text-gray-500 mt-1">
               Annonces publiées
             </p>
@@ -133,7 +133,7 @@ const AnalyticsDashboard = () => {
             <CardTitle className="text-sm font-medium">Taux de Conversion</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-[#FF5500]">
+            <div className="text-3xl font-bold text-dam-orange">
               {data.counts.totalUsers ? Math.round((data.counts.approvedUsers / data.counts.totalUsers) * 100) : 0}%
             </div>
             <p className="text-xs text-gray-500 mt-1">
@@ -165,7 +165,7 @@ const AnalyticsDashboard = () => {
                     <XAxis dataKey="name" angle={-45} textAnchor="end" height={80} />
                     <YAxis />
                     <Tooltip />
-                    <Bar dataKey="value" fill="#FF5500" />
+                    <Bar dataKey="value" fill="#F89720" />
                   </BarChart>
                 </ResponsiveContainer>
               </div>

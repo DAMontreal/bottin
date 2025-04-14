@@ -98,7 +98,7 @@ const Artists = () => {
             </SelectContent>
           </Select>
           
-          <Button type="submit" className="bg-[#FF5500]">
+          <Button type="submit" className="bg-dam-orange">
             <Search className="mr-2 h-4 w-4" /> Rechercher
           </Button>
         </form>
