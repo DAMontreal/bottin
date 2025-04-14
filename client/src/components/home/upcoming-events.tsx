@@ -19,10 +19,8 @@ const UpcomingEvents = () => {
               Participez à des événements artistiques vibrants à travers le Québec
             </p>
           </div>
-          <Link href="/events">
-            <a className="text-[#FF5500] hover:underline font-medium flex items-center">
-              Tous les événements <ArrowRight className="ml-2 h-4 w-4" />
-            </a>
+          <Link href="/events" className="text-dam-orange hover:underline font-medium flex items-center">
+            Tous les événements <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </div>
 
@@ -46,8 +44,8 @@ const UpcomingEvents = () => {
         ) : (
           <div className="text-center py-12">
             <p className="text-gray-500 mb-4">Aucun événement à venir pour le moment</p>
-            <Link href="/events">
-              <a className="text-[#FF5500] hover:underline">Voir tous les événements</a>
+            <Link href="/events" className="text-dam-orange hover:underline">
+              Voir tous les événements
             </Link>
           </div>
         )}
