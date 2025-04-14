@@ -4,6 +4,10 @@ export default {
   darkMode: ["class"],
   content: ["./client/index.html", "./client/src/**/*.{js,jsx,ts,tsx}"],
   theme: {
+    fontFamily: {
+      sans: ['Roboto', 'sans-serif'],
+      heading: ['Metropolis', 'sans-serif'],
+    },
     extend: {
       borderRadius: {
         lg: "var(--radius)",
@@ -11,6 +15,11 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       colors: {
+        dam: {
+          orange: "#F89720",
+          black: "#2F2D2B",
+          grey: "#F6F3F1",
+        },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
