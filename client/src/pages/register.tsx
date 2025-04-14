@@ -288,13 +288,13 @@ const Register = () => {
               </Alert>
               
               <div className="space-y-4">
-                <Button type="submit" className="w-full bg-[#FF5500]" disabled={isSubmitting}>
+                <Button type="submit" className="w-full bg-dam-orange hover:bg-[#e88a1e]" disabled={isSubmitting}>
                   {isSubmitting ? "Inscription en cours..." : "S'inscrire"}
                 </Button>
                 
                 <div className="text-center text-sm">
                   Vous avez déjà un compte?{" "}
-                  <Link href="/login" className="text-[#FF5500] hover:underline">
+                  <Link href="/login" className="text-dam-orange hover:underline">
                     Se connecter
                   </Link>
                 </div>

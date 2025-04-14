@@ -23,10 +23,8 @@ const FeaturedArtists = () => {
               Découvrez des artistes exceptionnels de tous horizons
             </p>
           </div>
-          <Link href="/artists">
-            <a className="text-[#FF5500] hover:underline font-medium flex items-center">
-              Voir tous <ArrowRight className="ml-2 h-4 w-4" />
-            </a>
+          <Link href="/artists" className="text-dam-orange hover:underline font-medium flex items-center">
+            Voir tous <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </div>
 
@@ -55,7 +53,7 @@ const FeaturedArtists = () => {
 
         <div className="text-center mt-12">
           <Link href="/artists">
-            <Button className="bg-[#FF5500] hover:bg-opacity-90 text-white font-bold py-3 px-8 rounded-full">
+            <Button className="bg-dam-orange hover:bg-[#e88a1e] text-white font-bold py-3 px-8 rounded-full">
               Découvrir plus d'artistes
             </Button>
           </Link>
