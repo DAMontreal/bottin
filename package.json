@@ -20,6 +20,8 @@
   },
   "devDependencies": {
     "@types/express": "4.17.21",
+    "@tailwindcss/typography": "^0.5.15",
+    "tailwindcss": "^3.4.14",
     "tsx": "^4.19.1",
     "typescript": "5.6.3"
   },
